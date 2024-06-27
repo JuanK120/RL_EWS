@@ -4,10 +4,10 @@ This is the Repository for the article submitted to AI4AS 2024, Here we present 
 
 ## Index
 
-* [Contents](##contents)
-* [Instalation](##Instalation)
-* [Execution](##Execution)
-* [Credits](##Credits)
+* [Contents](#contents)
+* [Instalation](#Instalation)
+* [Execution](#Execution)
+* [Credits](#Credits)
 
 ## Contents
 
