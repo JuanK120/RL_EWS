@@ -1,0 +1,5 @@
+.env
+.actEnv
+.myEnv
+__pycache__
+agents/__pycache__

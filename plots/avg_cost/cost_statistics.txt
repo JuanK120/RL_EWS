@@ -1,0 +1,18 @@
+\begin{tabular}{c || c|c|c|c|c|c}
+\hline
+\textbf{DWN - cost} \\
+\textbf{} & 0.1679 $\pm$ 0.1420 \\
+\hline
+\textbf{DQN - cost} \\
+\textbf{} & 0.1387 $\pm$ 0.0187 \\
+\hline
+\textbf{Egreedy - cost} \\
+\textbf{} & 0.1191 $\pm$ 0.0000 \\
+\hline
+\textbf{DWN_pol1 - cost} \\
+\textbf{} & 0.2267 $\pm$ 0.1049 \\
+\hline
+\textbf{DWN_pol2 - not cost} \\
+\textbf{} & 0.0026 $\pm$ 0.0000 \\
+\hline
+\end{tabular}

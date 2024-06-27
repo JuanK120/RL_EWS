@@ -1,0 +1,18 @@
+\begin{tabular}{c || c|c|c|c|c|c}
+\hline
+\textbf{DWN - avg response time} \\
+\textbf{} & 0.2362 $\pm$ 0.1196 \\
+\hline
+\textbf{DQN - avg response time} \\
+\textbf{} & 0.2480 $\pm$ 0.0410 \\
+\hline
+\textbf{Egreedy - avg response time} \\
+\textbf{} & 0.2523 $\pm$ 0.0554 \\
+\hline
+\textbf{DWN_pol1 - avg response time} \\
+\textbf{} & 0.2138 $\pm$ 0.0489 \\
+\hline
+\textbf{DWN_pol2 - not avg response time} \\
+\textbf{} & 0.2738 $\pm$ 0.0507 \\
+\hline
+\end{tabular}
