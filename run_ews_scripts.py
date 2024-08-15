@@ -2,8 +2,8 @@ import os
 import subprocess
 
 # Define the paths to your scripts
-#script_paths = ["./ews_dwn.py"]  
-script_paths = [ "./ews_dwn.py", "./ews_dwn_both_policies.py", "./ews_dqn.py", "./ews_egreedy.py", ] 
+script_paths = ["./ews_dwn.py"]  
+#script_paths = [ "./ews_dwn.py", "./ews_dwn_both_policies.py", "./ews_dqn.py", "./ews_egreedy.py", ] 
 
 # Name of the Conda environment
 env_comand = ""  #"..\\.actEnv\\Scripts\\activate" you should put the route to the environment you created while installing requirements.txt
