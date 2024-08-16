@@ -130,7 +130,7 @@ class MetaAgent(object):
             self.priority_mem.popleft()
 
     def sample(self, pop, pri, k):
-        pri = np.array(pri).astype(np.float)
+        pri = np.array([tensor.cpu().numpy() for tensor in pri], dtype=float)
         inds = np.random.choice(
             range(len(pop)), k,
             replace=False,
@@ -219,9 +219,11 @@ class MetaAgent(object):
         if self.epsilon_decay:
             self.epsilon -= self.epsilon_delta
 
-    def predict(self, probe):
-        return self.model(Variable(FloatTensor([0, 0]).unsqueeze(0), requires_grad=False),
+    def predict(self, probe): 
+        return self.model(Variable(FloatTensor([i+1 for i in range(42)]).unsqueeze(0), requires_grad=False),
                           Variable(probe.unsqueeze(0), requires_grad=False))
+        #return self.model(Variable(FloatTensor(np.zeros(42)).unsqueeze(0), requires_grad=False),
+        #                  Variable(probe.unsqueeze(0), requires_grad=False))
 
     def save(self, save_path, model_name):
         torch.save(self.model, "{}{}.pkl".format(save_path, model_name))

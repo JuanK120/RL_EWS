@@ -128,7 +128,7 @@ class MetaAgent(object):
             self.priority_mem.popleft()
 
     def sample(self, pop, pri, k):
-        pri = np.array(pri).astype(np.float)
+        pri = np.array([tensor.cpu().numpy() for tensor in pri], dtype=float)
         inds = np.random.choice(
             range(len(pop)), k,
             replace=False,

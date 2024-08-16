@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser(description='MORL')
 # CONFIG
 parser.add_argument('--env-name', default='dst', metavar='ENVNAME',
                     help='environment to train on: dst | ft | ft5 | ft7')
-parser.add_argument('--method', default='crl-naive', metavar='METHODS',
+parser.add_argument('--method', default='crl-envelope', metavar='METHODS',
                     help='methods: crl-naive | crl-envelope | crl-energy')
 parser.add_argument('--model', default='linear', metavar='MODELS',
                     help='linear | cnn | cnn + lstm')

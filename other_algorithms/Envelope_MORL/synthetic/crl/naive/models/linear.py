@@ -30,9 +30,9 @@ class NaiveLinearCQN(torch.nn.Module):
         self.affine5 = nn.Linear((state_size + reward_size) * 32,
                                  action_size)
 
-    def forward(self, state, preference):
+    def forward(self, state, preference): 
         x = torch.cat((state, preference), dim=1)
-        x = x.view(x.size(0), -1)
+        x = x.view(x.size(0), -1) 
         x = F.relu(self.affine1(x))
         x = F.relu(self.affine2(x))
         x = F.relu(self.affine3(x))

@@ -133,22 +133,15 @@ if __name__ == "__main__":
         for episode in range(EPISODES):
             
             done = False  
-
             num_of_requests = 0
-
             qSum = 0
-
             qActions = 1
-
             lossSum = 0 
-
             num_steps = 0 
-
             nom_action = agent.get_action(state)
             num_steps += 1 
 
             new_configuration_i = knowledge[nom_action]
-
             print(f"\n\n\n\n index : {nom_action} conf: {new_configuration_i[0]}")
             eRI.change_configuration(configurations[nom_action])
             chosen_confs_indexes.append(nom_action)

@@ -60,7 +60,7 @@ class EnvelopeLinearCQN(torch.nn.Module):
         mask = mask.view(-1, 1).repeat(1, self.reward_size)
 
         # get the HQ
-        HQ = reQ_ext.masked_select(Variable(mask)).view(-1, self.reward_size)
+        HQ = reQ_ext.masked_select(Variable(mask).bool()).view(-1, self.reward_size)
 
         return HQ
 

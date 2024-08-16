@@ -36,6 +36,7 @@ class MetaAgent(object):
         self.epsilon = args.epsilon
         self.epsilon_decay = args.epsilon_decay
         self.epsilon_delta = (args.epsilon - 0.05) / args.episode_num
+        print("decay : ",self.epsilon_decay, "delta", self.epsilon_delta)
 
         self.mem_size = args.mem_size
         self.batch_size = args.batch_size
@@ -93,7 +94,7 @@ class MetaAgent(object):
                               torch.rand(1)[0] < self.epsilon):
             action = np.random.choice(self.model_.action_size, 1)[0]
             action = int(action)
-
+        print("Epsilon : ", self.epsilon)
         return action
 
     def memorize(self, state, action, next_state, reward, terminal):
@@ -129,6 +130,7 @@ class MetaAgent(object):
             self.w_kept = None
             if self.epsilon_decay:
                 self.epsilon -= self.epsilon_delta
+                print("training epsilon")
             if self.homotopy:
                 self.beta += self.beta_delta
                 self.beta_delta = (self.beta-self.beta_init)*self.beta_expbase+self.beta_init-self.beta
@@ -143,7 +145,7 @@ class MetaAgent(object):
             self.priority_mem.popleft()
 
     def sample(self, pop, pri, k):
-        pri = np.array(pri).astype(np.float)
+        pri = np.array([tensor.cpu().numpy() for tensor in pri], dtype=float)
         inds = np.random.choice(
             range(len(pop)), k,
             replace=False,
@@ -251,7 +253,7 @@ class MetaAgent(object):
             self.beta_delta = (self.beta-self.beta_init)*self.beta_expbase+self.beta_init-self.beta
 
     def predict(self, probe):
-        return self.model(Variable(FloatTensor([0, 0]).unsqueeze(0), requires_grad=False),
+        return self.model(Variable(FloatTensor([i+1 for i in range(42)]).unsqueeze(0), requires_grad=False),
                           Variable(probe.unsqueeze(0), requires_grad=False))
 
     def save(self, save_path, model_name):
