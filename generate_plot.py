@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 PATH = "./plots/gen/"
-NUM_OF_SETS = 6  # Define the number of datasets to be loaded
+NUM_OF_SETS = 1  # Define the number of datasets to be loaded
 
 def load_datasets(base_path, num_of_sets):
     data_dict = {}
@@ -232,17 +232,9 @@ data_dict_requests_dwn = load_datasets(base_path_requests_dwn, NUM_OF_SETS)
 base_path_requests_dwn_both_pols = "./results/dwn/ews_dwn_both_pols" 
 data_dict_requests_dwn_both_pols = load_datasets(base_path_requests_dwn_both_pols, NUM_OF_SETS) 
 
-# DQN only optimizing average time
-#base_path_requests_dqn_only_avg = "./results/dqn/ews_dqn_avg_"
-#data_dict_requests_dqn_only_avg = load_datasets(base_path_requests_dqn_only_avg, NUM_OF_SETS) 
-
-# DQN only optimizing peak time
-#base_path_requests_dqn_only_peak = "./results/dqn/ews_dqn_peak_"
-#data_dict_requests_dqn_only_peak = load_datasets(base_path_requests_dqn_only_peak, NUM_OF_SETS) 
-
-# DQN only optimizing average and peak with weights
-#base_path_requests_dqn_with_weights = "./results/dqn/ews_dqn_mix_"
-#data_dict_requests_dqn_with_weights = load_datasets(base_path_requests_dqn_with_weights, NUM_OF_SETS)  
+#Envelope
+base_path_requests_envelope = "./results/envelope/ews_env_" 
+data_dict_requests_envelope = load_datasets(base_path_requests_envelope, NUM_OF_SETS)  
 
 
 #All plots
@@ -255,13 +247,13 @@ data_dict_requests_dwn_both_pols = load_datasets(base_path_requests_dwn_both_pol
 #plot_multiple_shaded_data(data_dicts, metrics_avgTime, titles_avgTime, ylabel, 'avg_response_time_plot_shaded_combined.png') 
 #plot_multiple_shaded_data(data_dicts, metrics_peakTime, titles_peakTime, ylabel, 'peak_time_plot_shaded_combined.png')
 
-# DQN v DWN v E-greedy plots
-data_dicts = [data_dict_requests_dqn,data_dict_requests_dwn,data_dict_requests_egreedy,]
-metrics_avgTime = ['avg_response_time', 'avg_response_time', 'avg_response_time',]
-titles_avgTime = ['DQN', 'DWN', '$\epsilon$-greedy',] 
+# DQN v DWN v E-greedy plots v Envelope
+data_dicts = [data_dict_requests_dqn,data_dict_requests_dwn,data_dict_requests_egreedy,data_dict_requests_envelope]
+metrics_avgTime = ['avg_response_time', 'avg_response_time', 'avg_response_time','avg_response_time']
+titles_avgTime = ['DQN', 'DWN', '$\epsilon$-greedy','Envelope'] 
 ylabelAvg = 'Time (s)'
-metrics_peakTime = ['cost', 'cost','cost']
-titles_peakTime = ['DQN', 'DWN', '$\epsilon$-greedy', ] 
+metrics_peakTime = ['cost', 'cost','cost','cost']
+titles_peakTime = ['DQN', 'DWN', '$\epsilon$-greedy','Envelope' ] 
 ylabelCost = 'Cost' 
 plot_multiple_shaded_data(data_dicts, metrics_avgTime, titles_avgTime, ylabelAvg, 'avg_response_time_plot_shaded_combined.png', plot_title='Average Time Across Episodes') 
 plot_multiple_shaded_data(data_dicts, metrics_peakTime, titles_peakTime, ylabelCost, 'cost_plot_shaded_combined.png', plot_title='Cost Across Episodes')
@@ -290,27 +282,27 @@ plot_multiple_shaded_data(data_dicts, metrics_peakTime, titles_peakTime, ylabelC
 
 
 # only DWN
-data_dicts = [data_dict_requests_dwn, ] 
-metrics_avgTime = ['avg_response_time', ]
-titles_avgTime = ['avg time', ] 
-ylabel1 = 'Time (s)'
-metrics_peakTime = ['cost', ]
-titles_peakTime = ['Cost', ] 
-ylabel2 = 'Cost' 
-plot_multiple_shaded_data(data_dicts, metrics_avgTime, titles_avgTime, ylabel1, 'DWN_avg.png',plot_title='Average Time Across Episodes') 
-plot_multiple_shaded_data(data_dicts, metrics_peakTime, titles_peakTime, ylabel2, 'DWN_cost.png',plot_title='Cost Across Episodes')
+#data_dicts = [data_dict_requests_dwn, ] 
+#metrics_avgTime = ['avg_response_time', ]
+#titles_avgTime = ['avg time', ] 
+#ylabel1 = 'Time (s)'
+#metrics_peakTime = ['cost', ]
+#titles_peakTime = ['Cost', ] 
+#ylabel2 = 'Cost' 
+#plot_multiple_shaded_data(data_dicts, metrics_avgTime, titles_avgTime, ylabel1, 'DWN_avg.png',plot_title='Average Time Across Episodes') 
+#plot_multiple_shaded_data(data_dicts, metrics_peakTime, titles_peakTime, ylabel2, 'DWN_cost.png',plot_title='Cost Across Episodes')
 
 
 # separate policies of DWN
-data_dicts = [data_dict_requests_dwn_both_pols ] 
-metrics_avgTime = ['avg_response_time', ]
-titles_avgTime = ['DWN', ] 
-ylabel1 = 'Time (s)'
-metrics_peakTime = ['cost', ]
-titles_peakTime = ['DWN', ] 
-ylabel2 = 'Cost' 
-plot_multiple_policies_shaded_data(data_dicts, metrics_avgTime, titles_avgTime, ylabel1, 'DWN_avg_both_pols.png',plot_title='Average Time Across Episodes') 
-plot_multiple_policies_shaded_data(data_dicts, metrics_peakTime, titles_peakTime, ylabel2, 'DWN_cost_both_pols.png',plot_title='Cost Across Episodes')
+#data_dicts = [data_dict_requests_dwn_both_pols ] 
+#metrics_avgTime = ['avg_response_time', ]
+#titles_avgTime = ['DWN', ] 
+#ylabel1 = 'Time (s)'
+#metrics_peakTime = ['cost', ]
+#titles_peakTime = ['DWN', ] 
+#ylabel2 = 'Cost' 
+#plot_multiple_policies_shaded_data(data_dicts, metrics_avgTime, titles_avgTime, ylabel1, 'DWN_avg_both_pols.png',plot_title='Average Time Across Episodes') 
+#plot_multiple_policies_shaded_data(data_dicts, metrics_peakTime, titles_peakTime, ylabel2, 'DWN_cost_both_pols.png',plot_title='Cost Across Episodes')
 
 # all policies of DWN
 data_dicts = [[data_dict_requests_dwn_both_pols],[data_dict_requests_dwn]] 

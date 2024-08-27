@@ -15,7 +15,7 @@ N_K = 2
 COST=3
 EPSILON = 0.001 # 0.5
 DATASET_SIZE = 600
-REPEATS = 8
+REPEATS = 76
 
 
 for repeat in range(REPEATS):
@@ -157,12 +157,12 @@ for repeat in range(REPEATS):
     df_results['avg_response_time'] = avg_response_times
     df_results['cost'] = costs 
 
-    with open(f"./results/egreedy/labels_egreedy_{repeat+16}.pkl", 'wb+') as f:
+    with open(f"./results/egreedy/labels_egreedy_{repeat+24}.pkl", 'wb+') as f:
         labels = [[confs_static.index(label[0]), label[1]] for label in labels]
         pickle.dump(labels, f)
     f.close()
 
-    df_results.to_csv(f"./results/egreedy/ews_egreedy_{repeat+16}.csv")
+    df_results.to_csv(f"./results/egreedy/ews_egreedy_{repeat+24}.csv")
 
 
 

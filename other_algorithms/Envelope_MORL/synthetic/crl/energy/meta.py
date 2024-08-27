@@ -33,7 +33,7 @@ class MetaAgent(object):
         self.gamma = args.gamma
         self.epsilon = args.epsilon
         self.epsilon_decay = args.epsilon_decay
-        self.epsilon_delta = (args.epsilon - 0.05) / args.episode_num
+        self.epsilon_delta = (args.epsilon - 0.05) / (args.episode_num / 2)
 
         self.mem_size = args.mem_size
         self.batch_size = args.batch_size
@@ -115,7 +115,7 @@ class MetaAgent(object):
             p = abs(wr + self.gamma * whq - wq)
         else:
             self.keep_preference = None
-            if self.epsilon_decay:
+            if self.epsilon_decay and self.epsilon > 0.0001 :
                 self.epsilon -= self.epsilon_delta
             p = abs(wr - wq)
         p += 1e-5

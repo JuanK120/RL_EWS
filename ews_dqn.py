@@ -30,7 +30,7 @@ GAMMA = .99                # reward discount
 MEMORY_SIZE = 1000000        # size of the replay buffer
 
 # Simulation Parameters
-REPEATS = 8
+REPEATS = 76
 EPISODES = 600 
 
 definitions = {
@@ -230,14 +230,14 @@ if __name__ == "__main__":
         df_results['cost'] = costs
 
 
-        with open(f"./results/dqn/labels_dqn_{repeat+16}.pkl", 'wb+') as f:
+        with open(f"./results/dqn/labels_dqn_{repeat+24}.pkl", 'wb+') as f:
             labels = [[confs_static.index(label[0]), label[1]] for label in labels]
             pickle.dump(labels, f)
         f.close()
 
-        df_results.to_csv(f"./results/dqn/ews_dqn_{repeat+16}.csv")
+        df_results.to_csv(f"./results/dqn/ews_dqn_{repeat+24}.csv")
         # Save the trained ANN
-        agent.save_net(PATH+f"_{repeat+16}.pt") 
+        agent.save_net(PATH+f"_{repeat+24}.pt") 
 
 
 

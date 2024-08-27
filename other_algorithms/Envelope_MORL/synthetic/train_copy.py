@@ -30,7 +30,7 @@ parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
                     help='learning rate')
 parser.add_argument('--epsilon', type=float, default=0.99, metavar='EPS',
                     help='epsilon greedy exploration')
-parser.add_argument('--epsilon-decay', default=0.1, action='store_true',
+parser.add_argument('--epsilon-decay', default=True, action='store_true',
                     help='linear epsilon decay to zero')
 parser.add_argument('--weight-num', type=int, default=32, metavar='WN',
                     help='number of sampled weights per iteration')
@@ -79,7 +79,7 @@ N_K = 2
 COST = 3
 
 # Simulation Parameters
-REPEATS = 24
+REPEATS = 100
 EPISODES = 600
 
 configurations = []
@@ -235,13 +235,13 @@ def train(env, agent, args):
                         reading = None
 
                         if(CHOSEN_METRIC in perception.metric_dict):
-                            reading = perception.metric_dict[CHOSEN_METRIC]
-                        
+                            reading = perception.metric_dict[CHOSEN_METRIC] 
                         if(reading):
-                            sample_list.extend([truncate_normalize(reading.value,reading.is_preference_high)])
+                            val = truncate_normalize(reading.value,reading.is_preference_high)
+                            sample_list.extend([val])
                             reqCount+=1
                         #else:
-                        #    print("There is no traffic being experienced by the EWS and not enough samples have been collected yet") 
+                        #    print("There is no traffic being experienced by the EWS and not enough samples have been collected yet")  
             knowledge[nom_action][REWARD] += sum(sample_list) 
             knowledge[nom_action][N_K] += reqCount
             knowledge[nom_action][COST] = cost_of_episode
@@ -296,8 +296,8 @@ def train(env, agent, args):
             # Save the performance to lists
             num_of_steps.append(num_steps) 
 
-            avg_response_time.append(avg_response_time_of_episode)
-            costs.append(cost_of_episode)
+            avg_response_time.append(-avg_response_time_of_episode)
+            costs.append(-cost_of_episode)
             
             #avg loss : 
             if loss == 0 :

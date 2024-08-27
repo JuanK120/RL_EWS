@@ -35,7 +35,7 @@ class MetaAgent(object):
         self.gamma = args.gamma
         self.epsilon = args.epsilon
         self.epsilon_decay = args.epsilon_decay
-        self.epsilon_delta = (args.epsilon - 0.05) / args.episode_num
+        self.epsilon_delta = (args.epsilon - 0.05) / (args.episode_num / 4)
         print("decay : ",self.epsilon_decay, "delta", self.epsilon_delta)
 
         self.mem_size = args.mem_size
@@ -128,7 +128,7 @@ class MetaAgent(object):
         else:
             print(self.beta)
             self.w_kept = None
-            if self.epsilon_decay:
+            if self.epsilon_decay and self.epsilon > self.epsilon_delta :
                 self.epsilon -= self.epsilon_delta
                 print("training epsilon")
             if self.homotopy:

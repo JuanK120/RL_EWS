@@ -49,22 +49,26 @@ base_path_dqn = "./results/dqn/ews_dqn_"
 base_path_egreedy = "./results/egreedy/ews_egreedy_"
 base_path_dwn = "./results/dwn/ews_dwn_"
 base_path_dwn_both_pols = "./results/dwn/ews_dwn_both_pols"
+base_path_requests_envelope = "./results/envelope/ews_env_" 
 
 data_dict_dqn = load_datasets(base_path_dqn, NUM_OF_SETS)
 data_dict_egreedy = load_datasets(base_path_egreedy, NUM_OF_SETS)
 data_dict_dwn = load_datasets(base_path_dwn, NUM_OF_SETS)
 data_dict_dwn_both_pols = load_datasets(base_path_dwn_both_pols, NUM_OF_SETS)
 
+
+data_dict_requests_envelope = load_datasets(base_path_requests_envelope, NUM_OF_SETS)  
+
 data_dicts = [data_dict_dwn, data_dict_dqn, data_dict_egreedy,data_dict_dwn_both_pols,data_dict_dwn_both_pols]
 
-metrics = ['avg_response_time', 'avg_response_time', 'avg_response_time','avg_response_time','not_avg_response_time']
-titles = ['DWN','DQN', 'Egreedy','DWN_pol1','DWN_pol2']
+metrics = ['avg_response_time', 'avg_response_time', 'avg_response_time','avg_response_time','not_avg_response_time','avg_response_time']
+titles = ['DWN','DQN', 'Egreedy','DWN_pol1','DWN_pol2','Envelope']
 
 # Write statistics for avg_response_time to file
 write_statistics_to_file(data_dicts, metrics, titles, 'avg_response_time_statistics.txt', jump=100)
 
-metrics = ['cost', 'cost', 'cost','cost','not_cost']
-titles = ['DWN','DQN', 'Egreedy','DWN_pol1','DWN_pol2']
+metrics = ['cost', 'cost', 'cost','cost','not_cost','cost']
+titles = ['DWN','DQN', 'Egreedy','DWN_pol1','DWN_pol2','Envelope']
 
 # Write statistics for cost to file
 write_statistics_to_file(data_dicts, metrics, titles, 'cost_statistics.txt', jump=100)
